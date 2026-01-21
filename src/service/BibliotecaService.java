@@ -1,7 +1,7 @@
 package service;
 
 import model.Libro;
-import model.Reserva;
+import model.Prestamo;
 import model.Usuario;
 import util.Validador;
 
