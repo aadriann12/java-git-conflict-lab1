@@ -1,4 +1,3 @@
-
 package app;
 
 import model.Libro;
@@ -13,6 +12,10 @@ public class Main {
     public static void main(String[] args) {
         BibliotecaService biblioteca = new BibliotecaService();
         Scanner sc = new Scanner(System.in);
+
+        // Datos iniciales (para que no esté vacío)
+        biblioteca.agregarLibro(new Libro("ISBN123", "Programación en Java"));
+        biblioteca.agregarLibro(new Libro("ISBN999", "Estructuras de Datos"));
 
         System.out.println("=== Gestión de Biblioteca ===");
 
@@ -31,7 +34,7 @@ public class Main {
                     System.out.print("ISBN a eliminar: ");
                     String isbnEliminar = sc.nextLine().trim();
                     boolean eliminado = biblioteca.eliminarLibro(isbnEliminar);
-                    System.out.println(eliminado ? "✔ Eliminado" : "✖ No encontrado");
+                    System.out.println(eliminado ? "✔ Eliminado" : "✖ No encontrado / No disponible para borrar");
                     break;
 
                 case "3": // Buscar por ISBN
@@ -45,27 +48,21 @@ public class Main {
                     System.out.print("Texto del título: ");
                     String texto = sc.nextLine().trim();
                     List<Libro> resultados = biblioteca.buscarPorTitulo(texto);
-                    if (resultados == null || resultados.isEmpty()) {
-                        System.out.println("✖ Sin coincidencias");
-                    } else {
-                        resultados.forEach(System.out::println);
-                    }
+                    if (resultados.isEmpty()) System.out.println("✖ Sin coincidencias");
+                    else resultados.forEach(System.out::println);
                     break;
 
                 case "5": // Listar catálogo
                     List<Libro> catalogo = biblioteca.listarCatalogo();
-                    if (catalogo == null || catalogo.isEmpty()) {
-                        System.out.println("✖ Catálogo vacío");
-                    } else {
-                        catalogo.forEach(System.out::println);
-                    }
+                    if (catalogo.isEmpty()) System.out.println("✖ Catálogo vacío");
+                    else catalogo.forEach(System.out::println);
                     break;
 
                 case "6": // Reservar libro
                     Usuario usuarioRes = leerUsuario(sc);
-                    Libro libroRes = leerLibroBasico(sc);
-                    biblioteca.reservarLibro(usuarioRes, libroRes);
-                    System.out.println("✔ Reserva registrada (si procede).");
+                    System.out.print("ISBN a reservar: ");
+                    String isbnRes = sc.nextLine().trim();
+                    biblioteca.reservarLibro(usuarioRes, new Libro(isbnRes, "dummy"));
                     break;
 
                 case "7": // Listar reservas
@@ -113,18 +110,7 @@ public class Main {
         System.out.print("Elige una opción: ");
     }
 
-    // Helpers para lectura de datos
     private static Libro leerLibro(Scanner sc) {
-        System.out.print("ISBN: ");
-        String isbn = sc.nextLine().trim();
-        System.out.print("Título: ");
-        String titulo = sc.nextLine().trim();
-        System.out.print("Autor (opcional): ");
-        String autor = sc.nextLine().trim();
-        return new Libro(isbn, titulo); // Ajusta si tu constructor incluye autor/año
-    }
-
-    private static Libro leerLibroBasico(Scanner sc) {
         System.out.print("ISBN: ");
         String isbn = sc.nextLine().trim();
         System.out.print("Título: ");
@@ -133,16 +119,10 @@ public class Main {
     }
 
     private static Usuario leerUsuario(Scanner sc) {
-        System.out.print("ID usuario: ");
-        int id;
-        try {
-            id = Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e) {
-            System.out.println("ID inválido. Se usará 0.");
-            id = 0;
-        }
+        System.out.print("Email usuario: ");
+        String email = sc.nextLine().trim();
         System.out.print("Nombre del usuario: ");
         String nombre = sc.nextLine().trim();
-        return new Usuario(id, nombre);
+        return new Usuario(email, nombre);
     }
 }

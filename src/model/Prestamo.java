@@ -1,10 +1,10 @@
 package model;
 
-public class Reserva {
+public class Prestamo {
     private final Usuario usuario;
     private final Libro libro;
 
-    public Reserva(Usuario usuario, Libro libro) {
+    public Prestamo(Usuario usuario, Libro libro) {
         this.usuario = usuario;
         this.libro = libro;
     }
@@ -14,6 +14,6 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return usuario.getNombre() + " ha reservado " + libro.getTitulo();
+        return usuario.getNombre() + " tiene prestado " + libro.getTitulo();
     }
 }
