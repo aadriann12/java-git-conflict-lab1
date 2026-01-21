@@ -1,16 +1,16 @@
 package model;
 
 public class Usuario {
-    private int id;
+    private String email;
     private String nombre;
 
-    public Usuario(int id, String nombre) {
-        this.id = id;
+    public Usuario(String email, String nombre) {
+        this.email = email;
         this.nombre = nombre;
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
     public String getNombre() {
