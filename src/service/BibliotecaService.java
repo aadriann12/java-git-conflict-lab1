@@ -1,7 +1,7 @@
 package service;
 
 import model.Libro;
-import model.Prestamo;
+import model.Reserva;
 import model.Usuario;
 import util.Validador;
 
@@ -54,15 +54,10 @@ public class BibliotecaService {
 
         // Realizar la reserva
         libro.setDisponible(false);
-<<<<<<< HEAD
         reservas.add(new Reserva(usuario, libro));
 
         System.out.println("Reserva realizada correctamente.");
         return true;
-=======
-        reservas.add(new Prestamo(usuario, libro));
-        System.out.println("Reserva realizada correctamente");
->>>>>>> origin/conflict-rename-clase
     }
 
     public void listarReservas() {
