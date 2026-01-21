@@ -3,10 +3,10 @@ package model;
 import java.util.Objects;
 
 public class Usuario {
-    private String email;
+    private int email;
     private String nombre;
 
-    public Usuario(String email, String nombre) {
+    public Usuario(int email, String nombre) {
         this.email = email;
         this.nombre = nombre;
     }
