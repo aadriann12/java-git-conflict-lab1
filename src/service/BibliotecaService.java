@@ -1,6 +1,7 @@
 package service;
 
 import model.Libro;
+import model.Prestamo;
 import model.Usuario;
 import util.Validador;
 
