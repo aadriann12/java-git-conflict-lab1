@@ -11,7 +11,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
+    public int getEmail() {
         return email;
     }
 
