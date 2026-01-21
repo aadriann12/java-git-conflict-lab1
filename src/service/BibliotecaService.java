@@ -76,4 +76,8 @@ public class BibliotecaService {
             System.out.println("- " + r);
         }
     }
+
+    public static boolean validarUsuario(Usuario usuario) {
+        return usuario != null && usuario.getNombre() != null;
+    }
 }
