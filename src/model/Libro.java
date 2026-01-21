@@ -3,7 +3,7 @@ package model;
 public class Libro {
     private String isbn;
     private String titulo;
-    private boolean disponible;
+    private int reservasActivas;
 
     public Libro(String isbn, String titulo) {
         this.isbn = isbn;
@@ -20,11 +20,14 @@ public class Libro {
     }
 
     public boolean isDisponible() {
-        return disponible;
+        return reservasActivas == 0;
     }
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+    public void incrementarReservas() {
+        reservasActivas++;
     }
 
     @Override
